@@ -7,6 +7,45 @@ saludar (nombre)
 
 let total = 0
 
+const zapatillasDisponibles = [
+    "nike air force",
+    "adidas campus",
+    "jordan retro 4",
+    "nike dunk",
+    "adidas samba"
+]
+
+zapatillasDisponibles.push("new balance 550")
+const zapatillasEliminada = zapatillasDisponibles.pop()
+console.log ("se ah eliminado la zapatilla " + zapatillasEliminada) 
+
+const zapatillaBuscada = prompt ("Que zapas buscas?")
+if (zapatillasDisponibles.includes(zapatillaBuscada)) {
+    const posicion = zapatillasDisponibles.indexOf(zapatillaBuscada)
+
+    console.log ("la zapatilla " + zapatillaBuscada + " esta disponible")
+    console.log ("se encuentra en el indice: " + posicion)
+}
+
+else {
+    console.log ("la zapatilla " + zapatillaBuscada + " no esta disponible")
+}
+
+zapatillasDisponibles.splice (1,1, "adidas gazelle")
+console.log ("catalogo actualizado")
+
+
+function mostarZapatillas (lista) {
+    console.log ("zapatillas disponibles")
+
+    for (const zapatilla of lista) {
+        console.log ("producto: " + zapatilla)
+    }
+    console.log ("total de productos: " + lista.length)
+}
+
+mostarZapatillas(zapatillasDisponibles)
+
 const calcularTotal = function (total, precio) {
     return total + precio
 }
