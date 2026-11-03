@@ -1,3 +1,31 @@
+
+class Zapatilla {
+    constructor(nombre, marca, precio, stock) {
+        this.nombre = nombre
+        this.marca = marca
+        this.precio = precio
+        this.stock = stock
+    }
+
+    vender() {
+        if (this.stock > 0) {
+            this.stock--
+            console.log("Venta realizada: " + this.nombre)
+        } else {
+            console.log("No hay stock de " + this.nombre)
+        }
+    }
+}
+
+
+const nike = new Zapatilla("Nike Air Force", "Nike", 120000, 5)
+
+const adidas = new Zapatilla("Adidas Campus", "Adidas", 150000, 8)
+
+const jordan = new Zapatilla("Jordan Retro 4", "Jordan", 250000, 3)
+
+
+
 function saludar(nombre) {
     console.log("Bienvenido " + nombre)
 }
@@ -31,11 +59,11 @@ else {
     console.log ("la zapatilla " + zapatillaBuscada + " no esta disponible")
 }
 
-zapatillasDisponibles.splice (1,1, "adidas gazelle")
+zapatillasDisponibles.splice(3, 1, "new balance 550")
 console.log ("catalogo actualizado")
 
 
-function mostarZapatillas (lista) {
+function mostrarZapatillas (lista) {
     console.log ("zapatillas disponibles")
 
     for (const zapatilla of lista) {
@@ -44,7 +72,7 @@ function mostarZapatillas (lista) {
     console.log ("total de productos: " + lista.length)
 }
 
-mostarZapatillas(zapatillasDisponibles)
+mostrarZapatillas(zapatillasDisponibles)
 
 const calcularTotal = function (total, precio) {
     return total + precio
@@ -66,19 +94,34 @@ while (continuar === "si") {
 
     switch (opcion) {
 
-    case "1":
-        console.log ("Nike Air Force agregado al carrito")
-        total = calcularTotal(total, 120000)
-        break
+case "1":
+    if (nike.stock > 0) {
+        nike.vender()
+        total = calcularTotal(total, nike.precio)
+        console.log("Nike Air Force agregado al carrito")
+    } else {
+        console.log("No hay stock disponible")
+    }
+    break
 
     case "2":
-        console.log("Adidas Campus agregado al carrito")
-        total = calcularTotal(total, 150000)
+        if (adidas.stock > 0) {
+            adidas.vender()
+            total = calcularTotal (total, adidas.precio)
+            console.log ("Adidas Campus agragada al carrito")
+        } else {
+            console.log ("No hay stock disponible")
+        }
         break
 
     case "3":
-        console.log("Jordan Retro 4 agregado al carrito")
-        total = calcularTotal(total, 250000)
+        if (jordan.stock > 0) {
+            jordan.vender()
+            total = calcularTotal (total, jordan.precio)
+            console.log ("Jordan retro fue agregada al carrito")
+        } else {
+            console.log ("No hay stock disponible")
+        }
         break
 
     default:
@@ -90,6 +133,9 @@ if (continuar === "si") {
 }
 else {
     mostrarTotal(total)
+    console.log("Stock final de Nike: " + nike.stock)
+    console.log("Stock final de Adidas: " + adidas.stock)
+    console.log("Stock final de Jordan: " + jordan.stock)
     console.log ("Gracias por tu compra " + nombre)
 }
 }
